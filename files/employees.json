@@ -1,0 +1,38 @@
+[
+	{
+		"last_name" : "Gantong",
+		"middle_name" : "Vidal",
+		"first_name" : "Anfernee Jeev",
+		"email_address" : "anferneegantong@gmail.com",
+		"birthday" : "1995-07-02",
+		"nationality" : "Filipino",
+		"civil_status" : "Single",
+		"gender" : "Male",
+		"mobile_number" : "09178684637",
+		"address" : "Dela Costa III, San Jose del Monte City, Bulacan"
+	},
+	{
+		"last_name" : "Gantong",
+		"middle_name" : "Vidal",
+		"first_name" : "Rachel",
+		"email_address" : "rachelgantong@gmail.com",
+		"birthday" : "1991-09-19",
+		"nationality" : "Filipino",
+		"civil_status" : "Single",
+		"gender" : "Female",
+		"mobile_number" : "09178684638",
+		"address" : "Dela Costa III, San Jose del Monte City, Bulacan"
+	},
+	{
+		"last_name" : "Tabayay",
+		"middle_name" : "Santos",
+		"first_name" : "Jane",
+		"email_address" : "jane@gmail.com",
+		"birthday" : "1995-11-12",
+		"nationality" : "Filipino",
+		"civil_status" : "Single",
+		"gender" : "Female",
+		"mobile_number" : "09178684639",
+		"address" : "Guanzonville, San Jose del Monte City, Bulacan"
+	}
+]
