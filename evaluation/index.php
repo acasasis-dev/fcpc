@@ -1,61 +1,69 @@
 <?php
-	require "../requires.php";
+	error_reporting(0);
+	require "../db.php";
 
-	$departments = $con->query( "select * from departments" );
+	$id = $_GET[ "id" ];
 
-	if( $_POST ) {
-		$code = $_POST[ "code" ];
-		$desc = $_POST[ "desc" ];
-		$department = $_POST[ "department" ];
 
-		$query = "
-			insert into
-				courses(
-					ccode,
-					cdesc,
-					did
-				) values(
-					\"$code\",
-					\"$desc\",
-					\"$department\"
-				)
-		";
+	$query = "
+        select
+            h.pfname as proffname,
+            h.pmname as profmname,
+            h.plname as proflname,
+            g.*
+        from
+            (
+                select
+                    a.eid, b.said, b.profid, c.*,
+                    d.yasyear, d.yassection, e.*, f.*
+                from
+                    enrolled a join
+                    subject_assignations b join
+                    subjects c join
+                    year_and_secs d join
+                    courses e join
+                    persons f
+                on
+                    a.said=b.said and
+                    b.sjid=c.sjid and
+                    b.yasid=d.yasid and
+                    d.cid=e.cid and
+                    a.studid=f.pid and
+                    f.pcode=$id and
+                    a.eid not in (
+                        select distinct( eid ) from answers
+                    )
+            ) g join persons h
+        on
+            g.profid=h.pid
+    ";
 
-		if( $con->query( $query ) )
-			header( "Location: /courses" );
-	}
+    if( (int)$id ) {
+    	$data = $con->query( "select * from persons where pcode=$id" )->fetch_assoc();
+    	$name = !$data? "No results": $data[ "plname" ]. ", " .$data[ "pfname" ]. " " .$data[ "pmname" ];
+    	$subjects = $con->query( $query );
+    } else {
+    	$name = "No results";
+    }
 ?>
 
-<main class="page contact-page">
-    <section class="portfolio-block contact">
-        <div class="container">
-            <div class="heading">
-                <h2>FCPC IRIS</h2>
-                <h3>Courses</h3>
-                <form method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="code">Code</label>
-                        <input class="form-control item" type="text" id="code" name="code">
-                    </div>
-                    <div class="form-group">
-                        <label for="desc">Description</label>
-                        <input class="form-control item" type="text" id="desc" name="desc">
-                    </div>
-                    <div class="form-group">
-                        <label for="department">Department</label>
-                        <select class="form-control item" id="department" name="department">
-                        	<?php foreach( $departments as $row ) { ?>
-                        	<option value="<?= $row[ "did" ] ?>"><?= $row[ "ddesc" ] ?></option>
-                        	<?php } ?>
-                        </select>
-                    </div>                    
-					<div class="form-group">
-						<input type="submit" class="btn btn-primary btn-block btn-lg" value="Add">
-					</div>
-				</form>
+<?php
+    require "../headers/home_header.php"; ?>
+    <main class="page contact-page">
+        <section class="portfolio-block contact">
+            <div class="container">
+                <div class="heading">
+                    <h1>FCPC Evaluation System</h1>
+                    <h4>Subjects Of: <?= $name ?></h4>
+                    <p><small></small></p>
+                </div>
+                <?php foreach( $subjects as $row ) { ?>
+                <div class="form-group"><button class="btn btn-primary btn-block btn-lg" onclick="window.location = '/evaluation/evaluate.php?id=<?= $row[ "eid" ] ?>&code=<?= $id ?> and
+                    a.eid not in (
+                        select distinct( eid ) from answers
+                    )'"><?= $row[ "sjdesc" ]. " - " .$row[ "ccode" ]. " " .$row[ "yasyear" ]. "-" .$row[ "yassection" ]. " - " .$row[ "proflname" ]. ", " .$row[ "proffname" ]. " " .$row[ "profmname" ] ?></button></div>
+                <?php } ?>
             </div>
-        </div>
-    </section>
-</main>
-
-<?php require "../footers/footer.php"; ?>
+        </section>
+    </main>
+    <?php require "../footers/footer.php"; ?>

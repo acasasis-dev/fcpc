@@ -203,6 +203,7 @@ insert into
 	questions
 		( qdesc )
 	values
+		( "Comment" ),
 		( "Integrity" ),
 		( "Sportmanship" ),
 		( "Courage" );

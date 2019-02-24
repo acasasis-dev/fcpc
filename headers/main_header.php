@@ -17,7 +17,6 @@
                 id="navbarNav">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="/home.php">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/student.php">Students</a></li>
 					<li class="nav-item" role="presentation"><a class="nav-link active" href="/logout.php">Logout</a></li>
                 </ul>
             </div>

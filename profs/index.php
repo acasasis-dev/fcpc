@@ -1,5 +1,5 @@
 <?php
-    require "headers/home_header.php";
+    require "../headers/home_header.php";
 
 ?>
     <main class="page contact-page">
@@ -10,9 +10,9 @@
                     <h3></h3>
                     <p><small></small></p>
                 </div>
-                <form method="GET" action="/evaluation">
+                <form method="GET" action="/profs/stats.php">
                     <div class="form-group">
-                        <label for="jsonfile">Student ID Mo</label>
+                        <label for="jsonfile">Professor ID</label>
                         <input class="form-control item" type="text" id="id" name="id">
                     </div>
                     <div class="form-group"><input type="submit" class="btn btn-primary btn-block btn-lg" value="View Data"></div>
@@ -20,4 +20,4 @@
             </div>
         </section>
     </main>
-<?php require "footers/footer.php" ?>
+<?php require "../footers/footer.php" ?>
