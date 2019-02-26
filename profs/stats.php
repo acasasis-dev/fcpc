@@ -1,7 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 <?php
-    require "../headers/home_header.php";
-    require "../db.php";
+    require "../requires.php";
 
     $id = $_GET[ "id" ];    
 

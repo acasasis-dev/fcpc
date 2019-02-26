@@ -1,5 +1,5 @@
 <?php
-    require "../headers/home_header.php";
+    require "../requires.php";
 
 ?>
     <main class="page contact-page">
