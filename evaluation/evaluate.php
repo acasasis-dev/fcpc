@@ -78,11 +78,31 @@
                 	<?php foreach( $questions as $x ) { ?>
                     <div class="form-group">
                         <label for="code"><b><h3><?= $x[ "qdesc" ] ?></h3></b></label>
-                        <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="5">Outstanding
-                        <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="4">Very Satisfactory
-                        <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="3">Satisfactory
-                        <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="2">Fair
-                        <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="1">Poor
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="5">Outstanding
+                                </td>
+                                <td>
+                                    <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="4">Very Satisfactory
+                                </td>
+                                <td>
+                                    <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="3">Satisfactory
+                                </td>
+                                <td>
+                                    <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="2">Fair
+                                </td>
+                                <td>
+                                    <input class="form-control item" type="radio" id="score<?= $x[ "qid" ] ?>" name="score<?= $x[ "qid" ] ?>" value="1">Poor
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        
+                        
+                        
+                        
+                        
                     </div>
                     <?php } ?>
                     <div class="form-group">

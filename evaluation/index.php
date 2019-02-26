@@ -30,6 +30,7 @@
                     d.cid=e.cid and
                     a.studid=f.pid and
                     f.pcode=$id and
+                    f.ptype=2 and
                     a.eid not in (
                         select distinct( eid ) from answers
                     )
@@ -38,12 +39,13 @@
             g.profid=h.pid
     ";
 
-    if( (int)$id ) {
-    	$data = $con->query( "select * from persons where pcode=$id" )->fetch_assoc();
-    	$name = !$data? "No results": $data[ "plname" ]. ", " .$data[ "pfname" ]. " " .$data[ "pmname" ];
-    	$subjects = $con->query( $query );
-    } else {
-    	$name = "No results";
+    $name = "No results";
+    if( $id = (int)$id ) {
+        if( is_integer( $id ) ) {
+        	$data = $con->query( "select * from persons where pcode=$id and ptype=2" )->fetch_assoc();
+        	$name = !$data? "No results": $data[ "plname" ]. ", " .$data[ "pfname" ]. " " .$data[ "pmname" ];
+        	$subjects = $con->query( $query );
+        }
     }
 ?>
 
@@ -58,10 +60,7 @@
                     <p><small></small></p>
                 </div>
                 <?php foreach( $subjects as $row ) { ?>
-                <div class="form-group"><button class="btn btn-primary btn-block btn-lg" onclick="window.location = '/evaluation/evaluate.php?id=<?= $row[ "eid" ] ?>&code=<?= $id ?> and
-                    a.eid not in (
-                        select distinct( eid ) from answers
-                    )'"><?= $row[ "sjdesc" ]. " - " .$row[ "ccode" ]. " " .$row[ "yasyear" ]. "-" .$row[ "yassection" ]. " - " .$row[ "proflname" ]. ", " .$row[ "proffname" ]. " " .$row[ "profmname" ] ?></button></div>
+                <div class="form-group"><button class="btn btn-primary btn-block btn-lg" onclick="window.location = '/evaluation/evaluate.php?id=<?= $row[ "eid" ] ?>&code=<?= $id ?>'"><?= $row[ "sjdesc" ]. " - " .$row[ "ccode" ]. " " .$row[ "yasyear" ]. "-" .$row[ "yassection" ]. " - " .$row[ "proflname" ]. ", " .$row[ "proffname" ]. " " .$row[ "profmname" ] ?></button></div>
                 <?php } ?>
             </div>
         </section>

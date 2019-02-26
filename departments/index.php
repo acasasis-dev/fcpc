@@ -22,6 +22,7 @@
                                 <td><?= $row[ "did" ] ?></td>
                                 <td><?= $row[ "ddesc" ] ?></td>
                                 <td>
+                                    <a href="/courses?id=<?= $row[ "did" ] ?>">Courses</a>
                                     <a href="/departments/edit.php?id=<?= $row[ "did" ] ?>">Edit</a>
                                     <a href="/departments/delete.php?id=<?= $row[ "did" ] ?>">Delete</a>
                                 </td>

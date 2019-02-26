@@ -1,6 +1,9 @@
 <?php
     require "../requires.php";
 
+    if( $_GET[ "id" ] )
+        $id = $_GET[ "id" ];
+
     $query = "
         select
             a.*,
@@ -11,6 +14,8 @@
         on
             b.did=a.did
     ";
+
+    if( $id ) $query = $query. " and b.did=$id";
     $data = $con->query( $query );
 ?>
 <main class="page contact-page">
@@ -37,6 +42,7 @@
                                 <td><?= $row[ "cdesc" ] ?></td>
                                 <td><?= $row[ "ddesc" ] ?></td>
                                 <td>
+                                    <a href="/year_and_secs?id=<?= $row[ "cid" ] ?>">Year and Sections</a>
                                     <a href="/courses/edit.php?id=<?= $row[ "cid" ] ?>">Edit</a>
                                     <a href="/courses/delete.php?id=<?= $row[ "cid" ] ?>">Delete</a>
                                 </td>

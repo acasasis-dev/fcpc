@@ -1,11 +1,16 @@
 <?php
     require "../requires.php";
 
+    if( $_GET[ "id" ] )
+        $id = $_GET[ "id" ];
+
     $query = "
         select a.*, b.*
         from year_and_secs a join courses b
         on a.cid=b.cid
     ";
+
+    if( $id ) $query = $query. " and a.cid=$id";
     $data = $con->query( $query );
 ?>
 <main class="page contact-page">

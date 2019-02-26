@@ -1,7 +1,7 @@
 <?php
     require "../requires.php";
 
-    $data = $con->query( "select * from questions" );
+    $data = $con->query( "select * from questions where qid!=1" );
 ?>
 <main class="page contact-page">
     <section class="portfolio-block contact">
