@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 <?php
     require "../headers/home_header.php";
     require "../db.php";
@@ -50,6 +51,7 @@
             foreach( $data as $x ) {
                 $arr[ $x[ "answer" ] ] = $x[ "count"];
             }
+
         }
     }
 ?>
@@ -57,29 +59,59 @@
         <section class="portfolio-block contact">
             <div class="container">
                 <div class="heading">
+
                     <h1>FCPC Evaluation System</h1>
                     <h4>Statistics of: <?= $prof ?></h4>
-                    <table>
+                    <div style="width: 600px; margin: 0 auto;">
+                        <canvas id="myChart" width="200" height="200"></canvas>
+                    </div>
+                    <!-- <table>
                         <thead>
                             <th>Score</th>
                             <th>Count</th>
                         </thead>
                         <tbody>
-                    <?php for( $x = 0; $x < 5; $x ++ ) { ?>
+                    <?php $disp = []; for( $x = 0; $x < 5; $x ++ ) { ?>
+                        <?php array_push( $disp, !$arr[ $x + 1 ]? 0: $arr[ $x + 1 ] ); ?>
                         <tr>
                             <td><?= $x + 1 ?></td>
                             <td><?= !$arr[ $x + 1 ]? 0: $arr[ $x + 1 ] ?></td>
                         <tr>
                     <?php } ?>
                         </tbody>
-                    </table>
-                    <b>Comments: </b><br>
+                    </table> -->
+                    
+                    
+                </div>    
+                <h3>Comments: </h3><br>
                     <?php foreach( $comments as $x ) { ?>
-                        <b><?= $x[ "answer" ] ?></b><br>
-                    <?php } ?>
-                    <p><small></small></p>
-                </div>                
+                        <b><?= $x[ "answer" ] ?></b><hr>
+                    <?php } $disp = implode( ", ", $disp ); ?>
+                    <p><small></small></p>            
             </div>
         </section>
     </main>
 <?php require "../footers/footer.php" ?>
+
+
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myDoughnutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+    datasets: [{
+        data: [<?= $disp ?>],
+        backgroundColor: ["#e74c3c", "#e67e22", "#f1c40f", "#3498db", "#81ecec"]
+    }],
+    labels: [
+        'Poor',
+        'Fair',
+        'Satisfactory',
+        'Very Satisfactory',
+        'Outstanding'
+    ]
+},
+    options: {
+    }
+});
+</script>
